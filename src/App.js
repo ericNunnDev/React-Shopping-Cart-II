@@ -16,23 +16,20 @@ function App() {
 	const [cart, setCart] = useState([]);
 
 	const addItem = item => {
-		// const newItem = 
+	  setCart([...cart, item])
 	};
 
 	return (
 		<div className="App">
-			<ProductContext.Provider value={products}>
-			<CartContext.Provider value={[cart, setCart]}>
+			<ProductContext.Provider value={{products, addItem}}>
+			<CartContext.Provider value={{cart, setCart}}>
 			<Navigation cart={cart} />
 			{/* Routes */}
 			<Route
 				exact
 				path="/"
-				render={() => (
-					<Products
-						products={products}
-						addItem={addItem}
-					/>
+				component={Products}
+				/>
 				)}
 			/>
 			<Route
